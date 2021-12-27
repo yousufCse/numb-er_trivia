@@ -30,7 +30,7 @@ class NumberTriviaPage extends StatelessWidget {
             const SizedBox(height: 30.0),
             buildBlocBuilder(),
             const Spacer(),
-            const TriviaControl(),
+            TriviaControl(),
             const Spacer()
           ],
         ),
@@ -41,10 +41,10 @@ class NumberTriviaPage extends StatelessWidget {
   BlocBuilder buildBlocBuilder() {
     return BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
       builder: (context, state) {
-        if (state is Loading) {
-          return CircularProgressIndicator(
-            color: Colors.green[400],
-          );
+        if (state is NumberTriviaInitial) {
+          return const Text('Start Searching');
+        } else if (state is Loading) {
+          return CircularProgressIndicator(color: Colors.green[400]);
         } else if (state is Error) {
           return DisplayError(text: state.message);
         } else if (state is Loaded) {

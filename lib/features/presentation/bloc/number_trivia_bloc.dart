@@ -33,8 +33,8 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
       } else if (event is GetConcreteNumberTriviaEvent) {
         emit(Loading());
 
-        final triviaOrFailure =
-            await getConcreteNumberTrivia(const Params(number: 42));
+        final triviaOrFailure = await getConcreteNumberTrivia(
+            Params(number: int.parse(event.number)));
 
         triviaOrFailure.fold(
           (l) => emit(Error(errorMessage(l))),
