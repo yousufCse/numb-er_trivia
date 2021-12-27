@@ -8,7 +8,7 @@ import 'package:number_trivia_v2/features/domain/repositories/number_trivia_repo
 class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   NumberTriviaRemoteDataSource remoteDataSource;
 
-  NumberTriviaRepositoryImpl(this.remoteDataSource);
+  NumberTriviaRepositoryImpl({required this.remoteDataSource});
 
   @override
   Future<Either<Failure, NumberTrivia>> getRandomNumberTrivia() async {

@@ -8,7 +8,7 @@ class GetRandomNumberTrivia
     implements UseCase<Either<Failure, NumberTrivia>, NoParams> {
   final NumberTriviaRepository repository;
 
-  GetRandomNumberTrivia(this.repository);
+  GetRandomNumberTrivia({required this.repository});
 
   @override
   Future<Either<Failure, NumberTrivia>> call(NoParams params) {
