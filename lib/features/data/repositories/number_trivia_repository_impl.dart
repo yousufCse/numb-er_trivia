@@ -19,4 +19,15 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, NumberTrivia>> getConcreteNumberTrivia(
+      int number) async {
+    try {
+      final trivia = await remoteDataSource.getConcreteNumberTrivia(number);
+      return Right(trivia);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 }

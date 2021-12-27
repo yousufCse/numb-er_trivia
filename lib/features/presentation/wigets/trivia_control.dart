@@ -9,10 +9,24 @@ class TriviaControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextButton(
-          onPressed: () => dispatchRandomNumberTrivia(context),
-          child: const Text('Get Random'),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.0),
+          child: TextField(
+            decoration: InputDecoration(hintText: 'Enter any number'),
+          ),
         ),
+        Row(
+          children: [
+            TextButton(
+              onPressed: () => dispatchRandomNumberTrivia(context),
+              child: const Text('Get Random Trivia'),
+            ),
+            TextButton(
+              onPressed: () => dispatchConcreteNumberTrivia(context),
+              child: const Text('Get Concrete Trivia'),
+            ),
+          ],
+        )
       ],
     );
   }
@@ -21,5 +35,10 @@ class TriviaControl extends StatelessWidget {
     BlocProvider.of<NumberTriviaBloc>(context).add(
       GetRandomNumberTriviaEvent(),
     );
+  }
+
+  dispatchConcreteNumberTrivia(BuildContext context) {
+    BlocProvider.of<NumberTriviaBloc>(context)
+        .add(GetConcreteNumberTriviaEvent());
   }
 }

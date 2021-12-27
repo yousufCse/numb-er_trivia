@@ -8,3 +8,9 @@ abstract class NumberTriviaEvent extends Equatable {
 }
 
 class GetRandomNumberTriviaEvent extends NumberTriviaEvent {}
+
+class GetConcreteNumberTriviaEvent extends NumberTriviaEvent {
+  // final int number;
+
+  // const GetConcreteNumberTriviaEvent({required this.number});
+}
