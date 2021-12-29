@@ -26,11 +26,11 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
       await _getTrivia(remoteDataSource.getConcreteNumberTrivia(number));
 
   Future<Either<Failure, NumberTrivia>> _getTrivia(
-      Future<NumberTriviaModel> getConcreteOrRadomTrivia) async {
+      Future<NumberTriviaModel> getConcreteOrRandomTrivia) async {
     //
     if (await networkInfo.isConnection) {
       try {
-        final trivia = await getConcreteOrRadomTrivia;
+        final trivia = await getConcreteOrRandomTrivia;
         return Right(trivia);
       } on ServerException {
         return Left(ServerFailure());
