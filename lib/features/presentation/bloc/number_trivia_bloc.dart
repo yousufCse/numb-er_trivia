@@ -16,11 +16,11 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   GetConcreteNumberTrivia getConcreteNumberTrivia;
   InputConverter inputConverter;
 
-  NumberTriviaBloc(
-      {required this.getRandomNumberTrivia,
-      required this.getConcreteNumberTrivia,
-      required this.inputConverter})
-      : super(NumberTriviaInitial()) {
+  NumberTriviaBloc({
+    required this.getRandomNumberTrivia,
+    required this.getConcreteNumberTrivia,
+    required this.inputConverter,
+  }) : super(NumberTriviaInitial()) {
     on<NumberTriviaEvent>((event, emit) async {
       if (event is GetRandomNumberTriviaEvent) {
         emit(Loading());

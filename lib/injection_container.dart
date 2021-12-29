@@ -1,4 +1,6 @@
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
+import 'package:number_trivia_v2/core/network/network_info.dart';
 import 'package:number_trivia_v2/core/utils/input_converter.dart';
 import 'package:number_trivia_v2/features/data/datasources/number_trivia_remote_datasource.dart';
 import 'package:number_trivia_v2/features/data/repositories/number_trivia_repository_impl.dart';
@@ -26,14 +28,21 @@ Future<void> init() async {
       () => GetConcreteNumberTrivia(repository: sl()));
 
   sl.registerLazySingleton<NumberTriviaRepository>(
-      () => NumberTriviaRepositoryImpl(remoteDataSource: sl()));
+    () => NumberTriviaRepositoryImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
 
   sl.registerLazySingleton<NumberTriviaRemoteDataSource>(
       () => NumberTriviaRemoteDataSourceImpl(client: sl()));
 
   // core
-  sl.registerLazySingleton(() => InputConverter());
+  sl.registerLazySingleton<InputConverter>(() => InputConverter());
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(checker: sl()));
 
   // external
   sl.registerLazySingleton<http.Client>(() => http.Client());
+  sl.registerLazySingleton<DataConnectionChecker>(
+      () => DataConnectionChecker());
 }
