@@ -10,7 +10,7 @@ abstract class NumberTriviaEvent extends Equatable {
 class GetRandomNumberTriviaEvent extends NumberTriviaEvent {}
 
 class GetConcreteNumberTriviaEvent extends NumberTriviaEvent {
-  final String number;
+  final String numberString;
 
-  const GetConcreteNumberTriviaEvent(this.number);
+  const GetConcreteNumberTriviaEvent(this.numberString);
 }

@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:number_trivia_v2/core/utils/input_converter.dart';
 import 'package:number_trivia_v2/features/data/datasources/number_trivia_remote_datasource.dart';
 import 'package:number_trivia_v2/features/data/repositories/number_trivia_repository_impl.dart';
 import 'package:number_trivia_v2/features/domain/repositories/number_trivia_repository.dart';
@@ -14,6 +15,7 @@ Future<void> init() async {
     () => NumberTriviaBloc(
       getRandomNumberTrivia: sl(),
       getConcreteNumberTrivia: sl(),
+      inputConverter: sl(),
     ),
   );
 
@@ -29,5 +31,9 @@ Future<void> init() async {
   sl.registerLazySingleton<NumberTriviaRemoteDataSource>(
       () => NumberTriviaRemoteDataSourceImpl(client: sl()));
 
+  // core
+  sl.registerLazySingleton(() => InputConverter());
+
+  // external
   sl.registerLazySingleton<http.Client>(() => http.Client());
 }

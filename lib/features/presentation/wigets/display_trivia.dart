@@ -7,7 +7,6 @@ class DisplayTrivia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('DisplayTrivia: ${trivia.text}');
     return Container(
       padding: const EdgeInsets.all(20.0),
       child: Text(
