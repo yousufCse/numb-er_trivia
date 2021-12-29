@@ -32,6 +32,7 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
           (r) => emit(Loaded(r)),
         );
       } else if (event is GetConcreteNumberTriviaEvent) {
+        emit(NumberTriviaInitial());
         final inputEither = inputConverter.getIntFromString(event.numberString);
 
         await inputEither.fold(
@@ -58,6 +59,8 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
         return kServerFailureMessage;
       case InvalidInputFailure:
         return kInvalidInputErrorMessage;
+      case NetworkFailure:
+        return kConnectionErrorMessage;
       default:
         return kUnexpectedErrorMessage;
     }
