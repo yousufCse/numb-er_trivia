@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:number_trivia_v2/features/domain/entities/number_trivia.dart';
 
 class NumberTriviaModel extends NumberTrivia {
@@ -18,4 +20,9 @@ class NumberTriviaModel extends NumberTrivia {
       number: json['number'].toString(),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'text': text,
+        'number': number,
+      };
 }

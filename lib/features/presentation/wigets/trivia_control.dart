@@ -10,7 +10,7 @@ class TriviaControl extends StatefulWidget {
 }
 
 class _TriviaControlState extends State<TriviaControl> {
-  late String inputSrc;
+  String? inputSrc;
 
   final controller = TextEditingController();
 
@@ -58,7 +58,8 @@ class _TriviaControlState extends State<TriviaControl> {
   }
 
   dispatchConcreteNumberTrivia(BuildContext context) {
+    if (inputSrc == null) return;
     BlocProvider.of<NumberTriviaBloc>(context)
-        .add(GetConcreteNumberTriviaEvent(inputSrc));
+        .add(GetConcreteNumberTriviaEvent(inputSrc!));
   }
 }

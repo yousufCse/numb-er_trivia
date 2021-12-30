@@ -3,8 +3,8 @@ import './features/presentation/pages/number_trivia_page.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  di.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const App());
 }
 
